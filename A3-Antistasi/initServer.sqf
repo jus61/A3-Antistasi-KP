@@ -195,3 +195,6 @@ resourcecheck = [] execVM "resourcecheck.sqf";
 savingServer = false;
 
 //if (serverName in chungos) then {["asshole",false,true] remoteExec ["BIS_fnc_endMission"]};
+
+// Server Restart Script from K4s0
+execVM "Scripts\kp\restart\server_restart.sqf";

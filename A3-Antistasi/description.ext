@@ -1,5 +1,6 @@
 #include "defines.hpp"
 #include "dialogs.hpp"
+#include "Scripts\kp\restart\restart_notifications.hpp"
 
 author="Barbolani";
 OnLoadName = "Antistasi Altis";
@@ -124,7 +125,7 @@ class Params
         title = "Allow Friendly Player Markers";
         values[] = {1,0};
         texts[] = {"Yes","No"};
-        default = 1;
+        default = 0;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
     class AISkill
@@ -147,7 +148,7 @@ class Params
         title = "Rate of Civ Traffic";
         values[] = {0.5,1,3};
         texts[] = {"Low","Medium","JAM"};
-        default = 1;
+        default = 0.5;
         //file = "setViewDistance.sqf"; // (Optional) Script [[call]]ed when player joins, selected value is passed as an argument
     };
 };

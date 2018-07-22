@@ -616,3 +616,5 @@ disableSerialization;
 _layer = ["estadisticas"] call bis_fnc_rscLayer;
 _layer cutRsc ["H8erHUD","PLAIN",0,false];
 [] spawn statistics;
+
+player addEventHandler ["GetInMan", {[ _this select 2] execVM "scripts\kp\kp_fuel_consumption.sqf";}];
