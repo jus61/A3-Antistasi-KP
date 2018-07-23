@@ -2,7 +2,7 @@ if (!isDedicated) exitWith {};
 
 private ["_serverDuration","_timeStart","_timeSinceStart","_shutdownSuccess","_timeUntilRestart","_30minspassed","_15minspassed","_5minspassed","_60secondspassed"];
 
-_restart_every_x_hours = 5;
+_restart_every_x_hours = 4;
 _serverDuration = (_restart_every_x_hours * 60 * 60);
 
 [_serverDuration] execVM "Scripts\kp\restart\restarttimer.sqf";
