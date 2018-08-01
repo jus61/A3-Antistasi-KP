@@ -113,7 +113,7 @@ if ((_nombre != "") and (_nombre != "Lakatoro01") and (_nombre != "Galili01") an
     _sizeY = getNumber (configFile >> "CfgWorlds" >> worldName >> "Names" >> (text _x) >> "radiusB");
     if (_sizeX > _sizeY) then {_size = _sizeX} else {_size = _sizeY};
     _pos = getPos _x;
-    if (_size < 200) then {_size = 400};
+    if (_size < 400) then {_size = 400};
     _roads = [];
     _numCiv = 0;
     if ((worldName != "Tanoa") and (worldName != "Altis")) then//If Tanoa, data is picked from a DB in initVar.sqf, if not, is built on the fly.
@@ -134,7 +134,21 @@ if ((_nombre != "") and (_nombre != "Lakatoro01") and (_nombre != "Galili01") an
         {
         _roads = carreteras getVariable _nombre;
         _numCiv = server getVariable _nombre;
-        if (isNil "_numCiv") then {hint format ["A mi no me sale en %1",_nombre]};
+        if (isNil "_numCiv") then
+            {
+            diag_log format ["Antistasi: Error in initZones.sqf. A mi no me sale en %1",_nombre];
+            _numCiv = (count (nearestObjects [_pos, ["house"], _size]));
+            _roadsProv = _pos nearRoads _size;
+            //_roads = [];
+            {
+            _roadcon = roadsConnectedto _x;
+            if (count _roadcon == 2) then
+                {
+                _roads pushBack (getPosATL _x);
+                };
+            } forEach _roadsProv;
+            carreteras setVariable [_nombre,_roads];
+            };
         if (typeName _numCiv != typeName 0) then {hint format ["Datos erróneos en %1. Son del tipo %2",_nombre, typeName _numCiv]};
         //if (isNil "_roads") then {hint format ["A mi no me sale en %1",_nombre]};
         };
@@ -297,6 +311,7 @@ bancos = [];
 _posAntenas = [];
 _posBancos = [];
 _blacklistPos = [];
+mrkAntenas = [];
 if (worldName == "Tanoa") then
     {
     _posAntenas = [[6617.95,7853.57,0.200073],[7486.67,9651.9,1.52588e-005],[6005.47,10420.9,0.20298],[2437.25,7224.06,0.0264893],[4701.6,3165.23,0.0633469],[11008.8,4211.16,-0.00154114],[10114.3,11743.1,9.15527e-005],[10949.8,11517.3,0.14209],[11153.3,11435.2,0.210876],[12889.2,8578.86,0.228729],[2682.94,2592.64,-0.000686646],[2690.54,12323,0.0372467],[2965.33,13087.1,0.191544],[13775.8,10976.8,0.170441]];
@@ -339,7 +354,6 @@ else
         } forEach antenas;
         };
     };
-mrkAntenas = [];
 
 if (count _posAntenas > 0) then
     {

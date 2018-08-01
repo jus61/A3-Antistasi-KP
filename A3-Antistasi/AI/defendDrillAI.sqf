@@ -1,15 +1,16 @@
-private _grupo = _this;
-
+private _grupo = _this select 0;
+private _marcador = _this select 1;
+private _modo = _this select 2;
 _objetivos = _grupo call enemyList;
 _grupo setVariable ["objetivos",_objetivos];
-_grupo setVariable ["tarea","Patrol"];
+private _size = [_marcador] call sizeMarker;
+if (_modo != "FORTIFY") then {_grupo setVariable ["tarea","PatrolSoft"]} else {_grupo setVariable ["tarea","FORTIFY"]};
 private _lado = side _grupo;
 private _friendlies = if (_lado == malos) then {[malos,civilian]} else {[_lado]};
-_morteros = [];
-_mgs = [];
-_movable = [leader _grupo];
-_baseOfFire = [leader _grupo];
-_flankers = [];
+private _morteros = [];
+private _mgs = [];
+private _movable = [leader _grupo];
+private _baseOfFire = [leader _grupo];
 
 {
 if (alive _x) then
@@ -19,7 +20,6 @@ if (alive _x) then
 	if (_result == "Normal") then
 		{
 		_movable pushBack _x;
-		_flankers pushBack _x;
 		}
 	else
 		{
@@ -51,7 +51,6 @@ if (count _morteros == 1) then
 	else
 		{
 		_movable pushBack (_morteros select 0);
-		_flankers pushBack (_morteros select 0);
 		};
 	};
 if (count _mgs == 1) then
@@ -64,14 +63,33 @@ if (count _mgs == 1) then
 	else
 		{
 		_movable pushBack (_mgs select 0);
-		_flankers pushBack (_mgs select 0);
 		};
 	};
 
 _grupo setVariable ["movable",_movable];
 _grupo setVariable ["baseOfFire",_baseOfFire];
-_grupo setVariable ["flankers",_flankers];
 if (side _grupo == buenos) then {_grupo setVariable ["autoRearmed",time + 300]};
+_edificios = nearestTerrainObjects [getMarkerPos _marcador, ["House"],true];
+_edificios = _edificios select {((_x buildingPos -1) isEqualTo []) and !((typeof _bld) in UPSMON_Bld_remove) and (_x inAera _marcador)};
+
+if (_modo == "FORTIFY") then
+	{
+	_edificios = _edificios call BIS_fnc_arrayShuffle;
+	_bldPos = [];
+	_cuenta = count _movable;
+	_exit = false;
+	{
+	_edificio = _x;
+	if (_exit) exitWith {};
+	{
+	if ([_x] call isOnRoof) then
+		{
+		_bldPos pushBack _x;
+		if (count _bldPos == _cuenta) then {_exit = true};
+		};
+	} forEach (_edificio buildingPos -1);
+	} forEach _edificios;
+	};
 while {true} do
 	{
 	if (({alive _x} count (_grupo getVariable ["movable",[]]) == 0) or (isNull _grupo)) exitWith {};

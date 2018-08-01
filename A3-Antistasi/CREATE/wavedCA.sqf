@@ -28,11 +28,11 @@ _nombreorig = [_mrkOrigen] call localizar;
 _lado = lados getVariable [_mrkOrigen,sideUnknown];
 _ladosTsk = [buenos,civilian,muyMalos];
 _ladosTsk1 = [malos];
-_nombreEny = "NATO";
+_nombreEny = nameMalos;
 //_config = cfgNATOInf;
 if (_lado == muyMalos) then
 	{
-	_nombreEny = "CSAT";
+	_nombreEny = nameMuyMalos;
 	//_config = cfgCSATInf;
 	_ladosTsk = [buenos,civilian,malos];
 	_ladosTsk1 = [muyMalos];
@@ -603,7 +603,7 @@ while {(_waves != 0)} do
 		["AtaqueAAF",[format ["%2 Is attacking from the %1. Intercept them or we may loose a sector",_nombreorig,_nombreEny],format ["%1 Attack",_nombreEny],_mrkDestino],getMarkerPos _mrkDestino,"CREATED"] call taskUpdate;
 		};
 	_solMax = round ((count _soldados)*0.6);
-	if (_solMax > 15) then {_waves = _waves -1};
+	if (_solMax > 8) then {_waves = _waves -1};
 	_firstWave = false;
 	diag_log format ["Antistasi: Reached end of spawning attack, wave %1",_waves];
 	if (lados getVariable [_mrkDestino,sideUnknown] != buenos) then {_soldados spawn remoteBattle};

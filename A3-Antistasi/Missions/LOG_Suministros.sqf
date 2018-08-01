@@ -7,7 +7,7 @@ _dificil = if (random 10 < tierWar) then {true} else {false};
 _salir = false;
 _contacto = objNull;
 _grpContacto = grpNull;
-_tsk = "";
+_tsk = "";/*
 if (_dificil) then
 	{
 	_result = [] call spawnMissionGiver;
@@ -64,7 +64,7 @@ if (_dificil) then
 	{
 	[0,"LOG"] spawn borrarTask;
 	waitUntil {sleep 1; !(["LOG"] call BIS_fnc_taskExists)};
-	};
+	};*/
 _posicion = getMarkerPos _marcador;
 
 _tiempolim = if (_dificil) then {30} else {60};
@@ -75,7 +75,8 @@ _taskDescription = format ["%1 population is in need of supplies. We may improve
 
 [[buenos,civilian],"LOG",[_taskDescription,"City Supplies",_marcador],_posicion,false,0,true,"Heal",true] call BIS_fnc_taskCreate;
 misiones pushBack ["LOG","CREATED"]; publicVariable "misiones";
-_pos = [];
+_pos = (getMarkerPos respawnBuenos) findEmptyPosition [1,50,"C_Van_01_box_F"];
+/*_pos = [];
 
 if (!_dificil) then
 	{
@@ -98,7 +99,7 @@ else
 		};
 	_pos = [_posroad, 3, _dirveh + 90] call BIS_Fnc_relPos;
 	};
-
+*/
 //Creating the box
 _camion = "Land_PaperBox_01_open_boxes_F" createVehicle _pos;
 _camion allowDamage false;

@@ -1,4 +1,4 @@
-private ["_pos","_rnd"];
+private ["_pos","_rnd","_posFuego"];
 _movido = false;
 if (petros != (leader group petros)) then
 	{
@@ -11,7 +11,6 @@ if (petros != (leader group petros)) then
 petros disableAI "MOVE";
 petros disableAI "AUTOTARGET";
 respawnBuenos setMarkerPos getPos petros;
-"Synd_HQ" setMarkerPos getPos petros;
 posHQ = getMarkerPos respawnBuenos; publicVariable "posHQ";
 if (isMultiplayer) then
 	{
@@ -34,25 +33,28 @@ else
 //fuego inflame true;
 [respawnBuenos,1] remoteExec ["setMarkerAlphaLocal",buenos,true];
 [respawnBuenos,1] remoteExec ["setMarkerAlphaLocal",civilian,true];
-_pos = [getPos petros, 3, getDir petros] call BIS_Fnc_relPos;
-fuego setPos _pos;
+_posFuego = [getPos petros, 3, getDir petros] call BIS_Fnc_relPos;
+fuego setPos _posFuego;
 _rnd = getdir Petros;
 if (isMultiplayer) then {sleep 5};
-_pos = [getPos fuego, 3, _rnd] call BIS_Fnc_relPos;
+_pos = [_posFuego, 3, _rnd] call BIS_Fnc_relPos;
 caja setPos _pos;
 _rnd = _rnd + 45;
-_pos = [getPos fuego, 3, _rnd] call BIS_Fnc_relPos;
+_pos = [_posFuego, 3, _rnd] call BIS_Fnc_relPos;
 mapa setPos _pos;
 mapa setDir ([fuego, mapa] call BIS_fnc_dirTo);
 _rnd = _rnd + 45;
-_pos = [getPos fuego, 3, _rnd] call BIS_Fnc_relPos;
+_pos = [_posFuego, 3, _rnd] call BIS_Fnc_relPos;
+_pos = _pos findEmptyPosition [0,50,(typeOf bandera)];
+if (_pos isEqualTo []) then {_pos = getPos petros};
 bandera setPos _pos;
 _rnd = _rnd + 45;
-_pos = [getPos fuego, 3, _rnd] call BIS_Fnc_relPos;
+_pos = [_posFuego, 3, _rnd] call BIS_Fnc_relPos;
 cajaVeh setPos _pos;
 //if (_movido) then {_nul = [] call vaciar};
 petros setBehaviour "SAFE";
-placementDone = true; publicVariable "placementDone";
+"Synd_HQ" setMarkerPos getPos petros;
+if (isNil "placementDone") then {placementDone = true; publicVariable "placementDone"};
 sleep 5;
 [Petros,"mission"] remoteExec ["flagaction",[buenos,civilian],petros];
 

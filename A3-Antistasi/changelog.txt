@@ -997,8 +997,12 @@ cambiar a inArea el undercover y revisar a qué bando van los controles conquista
 - Reverted error which made tier 1 and 2 NATO have Rambo skills.
 - Tier 2 NATO (if exist) instead of lowering the aggro when releasing prisoners, they will join you like CSAT.
 
-1.1.6 13/07/2018
+1.2.0 13/07/2018
 
+- IMPORTANT: Added enhaced AI features for the HC infantry squads (under testing).
+- IMPORTANT: Added CSAT as PvP faction.
+- IMPORTANT: Added more rebel squad recruitment option types.
+- IMPORTANT: When AI takes an AI airbase, they will auto take all the nearby resources and factories belonging to the looser.
 - Corrected PvP looting.
 - Re added rebreathers in enemy seaport ammoboxes.
 - Rebels will allways have an update of AI attack destination on major attacks, that update will be quicker if enemy comms are intercepted.
@@ -1014,3 +1018,72 @@ cambiar a inArea el undercover y revisar a qué bando van los controles conquista
 - No assassination missions in case NATO does not have any airbase in the island.
 - Convoys can now depart from outposts, more convoy options!
 - Extended auto conquer of surrounding zones for battles between AI to captured outposts.
+- Solved bug when MP player dismiss AI and has another player in the group.
+- Enemy creates now have proper UAV and terminals depending on yur Antistasi faction.
+- In vanilla MP rebels start with just SMGs and pistols, not AKs.
+- Applied a difficulty coefficient for very populated servers.
+- PvP slots wont be available for players that have been playing rebels in the last hour.
+- Added a reserved slot for members parameter to be able to book slots for members, up to 100% slots (member only session).
+- Fixed server autosave option.
+- Built a workaround for strange cases on which players were detected as PvP when they werent.
+- Doubled HC slots and increased playable slots for rebels.
+- AI won't count as civilians unconscious units while deciding to shoot arty rounds or NAPALM strikes.
+- Hopefully solved all the issues related with membership and hosted server environment.
+- Fixed: teamkilling option was not working when killing unonscious friendlies.
+- Added a message when a rebel player assembles a static weapon which confirms if the weapon will be used or not.
+- Bomb run number will be saved and loaded properly.
+- HQ asset position and direction is now persistent saved.
+- Bulletproofed a bit HQ flag position in case the selected position makes the flag dissapear, so the players will have a chance of repositioning the HQ in a more suitable place.
+- Corrected rare bug on QRFs when only tanks where available to retake a zone.
+- Players wont be able to garage AI manned vehicles.
+- Spotted vehicles marker colors should be ok now.
+- Improved infoshare between enhaced AI groups (they will know a bit more if them if some other group has spotted it).
+- Removed the "contact informer" mid step, as it seems not fun at all...
+- Mil buildings are not used to spawn ambient civvies.
+- Aggro implications when conquering / loosing certain territory types.
+
+1.2.1 27/07/2018
+
+- When rebels lose territory, there is a small chance depending on WL to be attacked on their HQ.
+- Corrected bug in ambient civilians.
+- Solved init bug on new dedis when the admin does not touch the parameters.
+- Solved statics not saving in MP dedi.
+
+1.2.2 28/07/2018
+
+- Re enabled Headless Clients.
+- Commander auto assign on JiP fixed when there are PvP players present.
+- Fixed "Move this Asset" and HQ garrisons on load.
+- Changed major attack AI decisions according to the new mechanic of auto conquer resources and factories when capturing an airbase. Also CSAT will prioritise more enemy outpost assault.
+- Reduced spawning requisites for a wave to be counted in major attacks.
+
+1.2.3 28/07/2018
+
+- NEW FEATURE: MP param to monitor non member distance to the closest member or HQ. After some timeout they will be teleported. This can be customizable in the MP lobby but it is activated by default. The aim of this feature is to avoid randomers in open dedis make spawn senseless zones and not be collaborative with other players.
+- Extended AutoRearm to HC squads. If they are "easy" and not fighting, they will search for better weapons, vests etc.. same as AI squadmates when ordered.
+- Fixed the detection of players that have been recently rebels and they are joining a pvp faction.
+- Players have to be in the HQ to garage vehicles (to store air vehicles, the HQ still has to be placed very close to an airbase flag).
+- Major attack task names adapted to your mods.
+- PvP player will have cars instead of quadbikes to request and spawning will be safer.
+- Solved some localization issues with city setup parameters.
+- Airstrike plane will be of proper side in Altis Greenfor version.
+- Improved stability when players add garrisons on spawned zones.
+- Small workaround for buliding HQ in MP issues.
+- Fixed heavy bug on enhaced AI which made them maneuvre much less.
+- Re enabled supply box spawn in high war level.
+- When a headless clint disconnects, an alarm will appear constantly instead of finishing the mission.
+
+1.2.4 29/07/2018
+
+- HR of AI squadmates is properly refunded when saving.
+- Enemy small vehicle patrols wont have only rebel HQ as reference but the whole frontier in SP and player presence in MP to simulate the whole island is being patrolled.
+- Better priorisation of targets for major attacks, less random, more sense.
+- Removed debug message when AI captures an airbase.
+- Hopefully solved all the remaining HQ assets issues.
+- Fixed bug when AI tries to hide in a building.
+- Reduced a lot the max distance between departure and targets for both land and air attacks (10Kmts and 3 Kmts).
+- Changed the position of the NATO Carrier in Altis.
+
+1.2.5 30/07/2018
+
+- Seaport boat garrisons and patrols are subject to boat availability.

@@ -60,6 +60,7 @@ if (isServer and !_byPassServer) then
 	["idleassets"] call fn_LoadStat;
 	["killZones"] call fn_LoadStat;
 	["controlesSDK"] call fn_LoadStat;
+	["bombRuns"] call fn_LoadStat;
 	waitUntil {!isNil "arsenalInit"};
 	["jna_dataList"] call fn_LoadStat;
 	//===========================================================================
@@ -188,5 +189,6 @@ if (isServer and !_byPassServer) then
 
 	["tasks"] call fn_LoadStat;
 	statsLoaded = 0; publicVariable "statsLoaded";
+	placementDone = true; publicVariable "placementDone";
 	petros allowdamage true;
 	};
