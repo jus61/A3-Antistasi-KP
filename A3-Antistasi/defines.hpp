@@ -104,7 +104,7 @@ class RscText
     style = ST_MULTI;
     linespacing = 1;
     colorBackground[] = {0,0,0,0};
-    colorText[] = {1,1,1,.5};
+    colorText[] = {1,1,1,0.5};
     text = "";
     shadow = 2;
     font = "PuristaMedium";

@@ -26,7 +26,7 @@ _x doMove _pos;
 	};
 } forEach _unidades;
 _timeOut = time + 60;
-waitUntil {sleep 5, !([_cercano] call canFight) or (time > _timeOut)};
+waitUntil {sleep 5 !([_cercano] call canFight) or (time > _timeOut)};
 {
 _x call recallGroup
 } forEach _unidades;
