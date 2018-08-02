@@ -21,4 +21,4 @@ if (_chequeo) exitWith {hint "All players must be in a 100m radius from HQ to be
 
 [[],"resourcecheckSkipTime"] call BIS_fnc_MP;
 
-
+// Test
